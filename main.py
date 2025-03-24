@@ -65,6 +65,15 @@ async def cleanup(update: telegram.Update, ctx: telegram.ext.ContextTypes.DEFAUL
     await update.effective_message.reply_text("Cleanup done.")
 
 
+async def init_commands(app: telegram.ext.Application):
+    await app.bot.set_my_commands(
+        [
+            telegram.BotCommand("jmd", "Download JM comic"),
+            telegram.BotCommand("cleanup", "Cleanup downloaded files (Admin only)"),
+        ]
+    )
+
+
 handlers = [
     telegram.ext.CommandHandler("jmd", jmdownload),
     telegram.ext.CommandHandler("cleanup", cleanup),
@@ -85,6 +94,7 @@ def main():
         .rate_limiter(rate_limiter)
         .base_url(os.environ.get("API_URL", "https://api.telegram.org/bot"))
         .base_file_url(os.environ.get("FILE_URL", "https://api.telegram.org/file/bot"))
+        .post_init(init_commands)
         .build()
     )
     app.add_handlers(handlers)
