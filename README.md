@@ -1,0 +1,6 @@
+# Env Vars
+
+- `TOKEN`
+- `ADMIN`
+- `API_URL` (OPTIONAL)
+- `FILE_URL` (OPTIONAL)

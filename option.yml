@@ -1,0 +1,28 @@
+log: true
+download:
+  cache: true
+  image:
+    decode: true
+    suffix: .jpg
+  threading:
+    image: 10
+    # photo: 4
+
+dir_rule:
+  base_dir: ./downloads
+plugins:
+  after_album:
+    - plugin: delete_duplicated_files
+      kwargs:
+        limit: 3
+        delete_original_file: true
+
+    - plugin: img2pdf
+      kwargs:
+        pdf_dir: ./pdfs
+        filename_rule: Aid
+
+  before_photo:
+    - plugin: skip_photo_with_few_images
+      kwargs:
+        at_least_image_count: 3

@@ -1,0 +1,15 @@
+[project]
+name = "jmcomicbot"
+version = "0.1.0"
+description = "Bot for a comic website"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "img2pdf>=0.6.0",
+    "jmcomic>=2.5.32",
+    "psutil>=7.0.0",
+    "python-telegram-bot[all]>=22.0",
+]
+
+[dependency-groups]
+dev = []
